@@ -18,6 +18,8 @@ RUN apt-get install -y \
  php5.6-intl \
  apache2
 
+RUN apt-get autoclean && apt-get -y autoremove && rm -rf /var/lib/apt/lists/*
+
 RUN echo \
 "<VirtualHost *:80>\n \
     DocumentRoot \"/var/www/html/\"\n \
