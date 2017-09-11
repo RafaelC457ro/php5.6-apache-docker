@@ -18,7 +18,9 @@ RUN apt-get install -y \
  php5.6-intl \
  apache2
 
-RUN apt-get autoclean && apt-get -y autoremove && rm -rf /var/lib/apt/lists/*
+RUN apt-get autoclean \
+ && apt-get -y autoremove \
+ && rm -rf /var/lib/apt/lists/*
 
 RUN echo \
 "<VirtualHost *:80>\n \
@@ -31,9 +33,6 @@ RUN echo \
     </Directory>\n \
 </VirtualHost>\n" \
 > /etc/apache2/sites-available/000-default.conf
-
-RUN sed -i "$a ServerName localhost" /etc/apache2/apache2.conf
-RUN sed -i '$a APACHE_SERVER_NAME=localhost' /etc/apache2/envvars
 
 RUN a2enmod rewrite
 
